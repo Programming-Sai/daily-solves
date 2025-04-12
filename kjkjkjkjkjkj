@@ -1,0 +1,24 @@
+# Run git-push.bat with commit message and optional "push"
+$commitMessage = "Auto commit at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+$pushFlag = "push"
+
+# Set required env variables before calling the script
+$env:GIT_FOLDER = $gitFolder
+$env:LOG_FILE = $logFile
+
+& $gitScript $commitMessage $pushFlag
+
+# Clean up lock
+Remove-Item $lockFile
+# Run git-push.bat with commit message and optional "push"
+$commitMessage = "Auto commit at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+$pushFlag = "push"
+
+# Set required env variables before calling the script
+$env:GIT_FOLDER = $gitFolder
+$env:LOG_FILE = $logFile
+
+& $gitScript $commitMessage $pushFlag
+
+# Clean up lock
+Remove-Item $lockFile
