@@ -1,24 +1,12 @@
-# Run git-push.bat with commit message and optional "push"
-$commitMessage = "Auto commit at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
-$pushFlag = "push"
+Reasoned for 25 seconds
+When the Task Scheduler triggers your script, it may run under a different working directory (often C:\Windows\System32), so any relative paths inside your PowerShell scripts (like to your config file) can fail silently. In your case, although the task registers correctly and is “Ready,” main-runner.ps1 may not be finding its configuration or logging as expected.
 
-# Set required env variables before calling the script
-$env:GIT_FOLDER = $gitFolder
-$env:LOG_FILE = $logFile
+Here are a few steps to fix this:
 
-& $gitScript $commitMessage $pushFlag
+1. Use Full Paths in main-runner.ps1
+Make sure you reference the config file (and any other file) using its full path. For example, instead of
 
-# Clean up lock
-Remove-Item $lockFile
-# Run git-push.bat with commit message and optional "push"
-$commitMessage = "Auto commit at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
-$pushFlag = "push"
-
-# Set required env variables before calling the script
-$env:GIT_FOLDER = $gitFolder
-$env:LOG_FILE = $logFile
-
-& $gitScript $commitMessage $pushFlag
-
-# Clean up lock
-Remove-Item $lockFile
+powershell
+Copy
+Edit
+Get-Content 
