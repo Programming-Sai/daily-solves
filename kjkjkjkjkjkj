@@ -1,12 +1,62 @@
-Reasoned for 25 seconds
-When the Task Scheduler triggers your script, it may run under a different working directory (often C:\Windows\System32), so any relative paths inside your PowerShell scripts (like to your config file) can fail silently. In your case, although the task registers correctly and is “Ready,” main-runner.ps1 may not be finding its configuration or logging as expected.
+param (
+    [string]$Action = "start"
+)
 
-Here are a few steps to fix this:
+# Load config into a hashtable
+$config = @{}
+Get-Content "c:\Users\pc\Desktop\GitGuardian\config.txt" | ForEach-Object {
+    $parts = $_ -split "=", 2
+    $config[$parts[0].Trim()] = $parts[1].Trim()
+}
 
-1. Use Full Paths in main-runner.ps1
-Make sure you reference the config file (and any other file) using its full path. For example, instead of
+$taskName = "GitAutoPushTask"
+$scriptPath = "C:\Users\pc\Desktop\GitGuardian\main-runner.ps1"  # Use full path
+Write-Host "Script path is: $scriptPath"
 
-powershell
-Copy
-Edit
-Get-Content 
+switch ($Action.ToLower()) {
+    "start" {
+        # Parse the schedule time string as a DateTime object (if needed)
+        # For example, if your schedule time is "5:55 PM", you can do:
+        $scheduleTime = [datetime]::ParseExact($config["SCHEDULE_TIME"], "h:mm tt", $null)
+        $trigger = New-ScheduledTaskTrigger -Daily -At $scheduleTime
+
+        # Set up the action to run powershell.exe with your script. Using full path avoids ambiguity.
+        $psPath = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
+        $action = New-ScheduledTaskAction -Execute $psPath -Argument "-ExecutionPolicy Bypass -File `"$scriptPath`""
+        
+        # Optional: Output action type for debugging:
+        Write-Host "Action type:" ($action.GetType().FullName)
+
+        # Register the task under the current user context by omitting -User and -RunLevel parameters.
+        Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $taskName `
+            -Description "Automatically pushes to GitHub daily." -Force
+
+        Enable-ScheduledTask -TaskName $taskName
+        Write-Output "[START] Task registered and enabled."
+    }
+
+    "stop" {
+        Disable-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+        Write-Output "[STOP] Task disabled (but not removed)."
+    }
+
+    "status" {
+        $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+        if ($null -eq $task) {
+            Write-Output "[STATUS] Task not found."
+        }
+        else {
+            $state = (Get-ScheduledTaskInfo -TaskName $taskName).State
+            Write-Output "[STATUS] Task exists. Current state: $state"
+        }
+    }
+
+    "uninstall" {
+        Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction SilentlyContinue
+        Write-Output "[UNINSTALL] Task unregistered."
+    }
+
+    default {
+        Write-Output "Invalid argument. Use one of: start, stop, status, uninstall"
+    }
+}
