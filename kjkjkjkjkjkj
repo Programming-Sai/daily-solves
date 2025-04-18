@@ -8,7 +8,7 @@ Get-Content "c:\Users\pc\Desktop\GitGuardian\config.txt" | ForEach-Object {
     $parts = $_ -split "=", 2
     $config[$parts[0].Trim()] = $parts[1].Trim()
 }
-
+afma; lma; flm
 $taskName = "GitAutoPushTask"
 $scriptPath = "C:\Users\pc\Desktop\GitGuardian\main-runner.ps1"  # Use full path
 Write-Host "Script path is: $scriptPath"
