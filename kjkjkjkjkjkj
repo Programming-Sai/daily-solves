@@ -16,7 +16,8 @@ Write-Host "Script path is: $scriptPath"
 switch ($Action.ToLower()) {
     "start" {
         # Parse the schedule time string as a DateTime object (if needed)
-        # For example, if your schedule time is "5:55 PM", you can do:
+        # For example, if your schedule time is "5:55 PM", you can do:lknalknv;alkfn;alkfa/ds., /s
+        apdvka; v alvm'apvnnk/
         $scheduleTime = [datetime]::ParseExact($config["SCHEDULE_TIME"], "h:mm tt", $null)
         $trigger = New-ScheduledTaskTrigger -Daily -At $scheduleTime
 
