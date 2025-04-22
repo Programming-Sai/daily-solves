@@ -1,10 +1,18 @@
 '''
 Solution is to minimise a and c to that they are closer to b
 '''
+from fprintx import printx
 
 
 def check(a, b, c):
-    return abs((a+(1 if a < b else 0)) - b) + abs(b - (c-(1 if c > b else 0))) + abs((a+(1 if a < b else 0)) - (c-(1 if c > b else 0)))
+    offsets = [-1, 0, 1]
+    best = float('inf')
+    for _a in offsets:
+        for _b in offsets:
+            for _c in offsets:
+                i, j, k = a+_a, b+_b, c+_c
+                best = min(best, (abs(i - j) + abs(i - k) + abs(j - k)))
+    return best
 
 
 t = int(input())

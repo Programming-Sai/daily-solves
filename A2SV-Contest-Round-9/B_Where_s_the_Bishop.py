@@ -3,15 +3,18 @@ WTF is wrong with this solution??
 '''
 
 
-def check(matrix):
-    row = 0
-    for i in range(1, len(matrix)-1):
-        if matrix[i].count('#') == 1 :
-            row = i
-            break
-    for i in range(len(matrix[row])):
-        if matrix[row][i] == '#':
-            return row+1, i+1
+# def check(matrix):
+#     row = 0
+#     for i in range(1, len(matrix)-1):
+#         if matrix[i].count('#') == 1 :
+#             row = i
+#             break
+#     for i in range(len(matrix[row])):
+#         if matrix[row][i] == '#':
+#             return row+1, i+1
+
+
+
         
 def check(matrix):
     counts = []
@@ -33,10 +36,15 @@ def check(matrix):
     
 
 
-t = int(input())
+
+# Read entire input at once
+import sys
+lines = [line.strip() for line in sys.stdin if line.strip()]
+
+t = int(lines[0])
+ptr = 1
+
 for _ in range(t):
-    matrix = []
-    for i in range(8):
-        matrix.append(input())
-    # print(*matrix, len(matrix))
+    matrix = lines[ptr:ptr+8]
+    ptr += 8
     print(*check(matrix))
