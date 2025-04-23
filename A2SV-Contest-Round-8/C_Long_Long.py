@@ -32,6 +32,8 @@ n = 6
 a = [-1, 7, -4, -2, 5, -8]
 check(n, a)
 
+
+
 # t = int(input())
 # for _ in range(t):
 #     n = int(input())

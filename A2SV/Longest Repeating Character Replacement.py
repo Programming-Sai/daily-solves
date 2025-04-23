@@ -5,9 +5,6 @@ from fprintx import printx
 def characterReplacement(s, k):
     n = len(s)
     counter = [0] * 26
-    
-
-
     l = r = max_length = max_freq = window_length = 0
     while r < n:
         # if r+1<n :printx(counter[ ord(s[r+1]) - ord('A') ], l, r, max_item_count, max_length, ((r - l) + 1), overflow_index, m, k, s, widths=[6])

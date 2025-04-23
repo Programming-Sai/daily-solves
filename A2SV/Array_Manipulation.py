@@ -1,13 +1,5 @@
 from fprintx import printx
 
-# def arrayManipulation(n, queries):
-    # result = [0] * n
-    # for query in queries:
-        # result[query[0]-1 : query[1]] = [query[2] + m for m in result[query[0]-1 : query[1]]]
-        # printx(query, query[0]-1, query[1], query[2], result, widths=[5])
-    # return max(result)
-
-
 
 def arrayManipulation(n, queries):
     difference_array = [0] * (n+1)
@@ -22,13 +14,14 @@ def arrayManipulation(n, queries):
 
 
     # printx(difference_array)
-    for i in range(1, len(difference_array)):
-        difference_array[i] += difference_array[i - 1]
+    max_result = current = 0
+    for diff in difference_array:
+        current += diff
+        max_result = max(max_result, current)
     # printx(difference_array, max(difference_array))
 
 
-    return max(difference_array[1:])
-
+    return max_result
 
 
 
