@@ -27,10 +27,29 @@ def check(n, a):
     print(*[result, operation_count])
 
 
+def check(n, a):
+    l = r = i = count = 0
+
+    while r < n:
+        printx(l, r, a[l:r+1], a[i], i, widths=[15])
+        while a[r] > 0:
+            count += 1
+            l = r+1
+            r += 1
+        r += 1
+
+        i += 1
+    print()
+    return count
+    
+
+
 
 n = 6
 a = [-1, 7, -4, -2, 5, -8]
-check(n, a)
+# print(check(n, a))
+
+print(1 << 2)
 
 
 
@@ -38,4 +57,4 @@ check(n, a)
 # for _ in range(t):
 #     n = int(input())
 #     a = list(map(int, input().split()))
-#     check(n, a)
+#     print(check(n, a))
