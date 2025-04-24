@@ -28,33 +28,29 @@ def check(n, a):
 
 
 def check(n, a):
-    l = r = i = count = 0
+    running_sum = r = count = 0
+    for x in a:
+        running_sum += (x if x >= 0 else -x)
 
     while r < n:
-        printx(l, r, a[l:r+1], a[i], i, widths=[15])
-        while a[r] > 0:
-            count += 1
-            l = r+1
+        met_neg = False
+        while r < n and a[r] <= 0:
+            # printx(r, a[r])
+            met_neg = met_neg or (a[r] < 0)
             r += 1
+        count += met_neg
         r += 1
-
-        i += 1
-    print()
-    return count
-    
+    return (running_sum, count)
 
 
 
-n = 6
-a = [-1, 7, -4, -2, 5, -8]
+# n = 6
+# a = [-1, 7, -4, -2, 5, -8]
 # print(check(n, a))
 
-print(1 << 2)
 
-
-
-# t = int(input())
-# for _ in range(t):
-#     n = int(input())
-#     a = list(map(int, input().split()))
-#     print(check(n, a))
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    print(*check(n, a))
