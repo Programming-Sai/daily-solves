@@ -56,20 +56,66 @@ def check(n, a):
         if intermediate:
             seq.append(intermediate)
     return seq
+
+
+def check(n, a):
+    peak = max(a)
+    if a[0] == peak or a[n-1] == peak:
+        return 'YES'
+    return 'NO'
     
 
-n = 5
-a = [4, 2, 2, 2, 5]
+
+    
+
+def check(n, a):
+    new_arr = []
+    for x in a:
+        if new_arr and x == new_arr[-1]:
+            continue
+        new_arr.append(x)
+
+    if len(new_arr) <= 2:
+        return 'YES'
+    
+    valley_count = 0
+    for i in range(len(new_arr)):
+        if i == 0 and  new_arr[i] < new_arr[i+1] :
+            valley_count += 1
+            continue
+            
+        elif i == len(new_arr) -1 and  new_arr[i] < new_arr[i-1]:
+            valley_count += 1
+            continue
+
+        if new_arr[i -1] > new_arr[i] and new_arr[i] < new_arr[i+1]:
+            valley_count += 1
+
+    if valley_count == 1:
+        return 'YES'
+    else:
+        return 'NO'
+
+# n = 5
+# a = [4, 2, 2, 2, 5]
 
 # n = 7
 # a=[3, 2, 2, 1, 2, 2, 3]
-print(check(n, a))
+
+n = 11
+a = [1, 1, 1, 2, 3, 3, 4, 5, 6, 6, 6]
+
+
+# n=1
+# a=[1000000000]
+
+# print(check(n, a))
 
 
 
 
-# t = int(input())
-# for _ in range(t):
-#     n = int(input())
-#     a = list(map(int, input().split()))
-#     print(check(n, a))
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    print(check(n, a))
