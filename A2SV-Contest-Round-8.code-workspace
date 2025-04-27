@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "A2SV-Contest-Round-8"
+		},
+		{
+			"path": "A2SV-Contest-Round-9"
+		},
+		{
+			"path": "A2SV"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "A2SV"
+	}
+}
