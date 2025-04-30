@@ -68,21 +68,22 @@ def numberOfSubarrays(nums, k):
 
 
 def numberOfSubarrays(nums, k):
-    n = len(nums)
-    odd_indices = [-1]  # Sentinel for easier math
-    for i, num in enumerate(nums):
-        if num % 2!=0:
-            odd_indices.append(i)
-    odd_indices.append(n)  # Sentinel for end
-    print(odd_indices)
+        n = len(nums)
+        odd_indices = [-1]  # Sentinel for easier math
+        for i, num in enumerate(nums):
+            if num % 2!=0:
+                odd_indices.append(i)
+        odd_indices.append(n)  # Sentinel for end
+        print(odd_indices)
 
-    subarr_count = 0
-    for i in range(1, len(odd_indices) - k):
-        left_count = odd_indices[i] - odd_indices[i - 1]
-        right_count = odd_indices[i + k] - odd_indices[i + k - 1]
-        subarr_count += left_count * right_count
+        subarr_count = 0
+        for i in range(1, len(odd_indices) - k):
+            left_count = odd_indices[i] - odd_indices[i - 1]
+            right_count = odd_indices[i + k] - odd_indices[i + k - 1]
+            subarr_count += left_count * right_count
+            printx(left_count, right_count ,subarr_count, odd_indices[i], odd_indices[i-1], odd_indices[i+k], odd_indices[i+k-1], widths=[10])
 
-    return subarr_count
+        return subarr_count
 
 
 
