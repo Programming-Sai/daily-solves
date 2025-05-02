@@ -12,10 +12,7 @@ public class DailyTemperatures {
                 answer[last] = i - last;
             }
             answerStack.push(i);
-            System.out.println(answerStack);
-            // System.out.println(Arrays.toString(answer)); // Option 3
         }
-
         return answer;
     }
 
