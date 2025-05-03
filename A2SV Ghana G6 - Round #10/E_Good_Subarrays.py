@@ -37,6 +37,7 @@ def check(n, a):
         if curr_sum == (r+1):
             print(a[:r], r)
             result_sum += 1
+
     curr_sum = 0
     for l in range(n-1, -1, -1):
         curr_sum +=  a[l]
@@ -48,10 +49,12 @@ def check(n, a):
     return result_sum
 
 
-n = 3
-a = [1, 2, 0]
+# n = 3
+# a = [1, 2, 0]
 # n = 5
 # a = [1, 1, 0, 1, 1]
+n = 6
+a = [6, 0, 0, 0, 0, 5]
 print(check(n, a))
 
 
