@@ -16,7 +16,6 @@ public class LRUCache {
 
     private Node head;
     private Node tail;
-    private int currentSize;
     private int capacity;
     HashMap<Integer, Node> cacheHash;
 
@@ -27,7 +26,6 @@ public class LRUCache {
         tail.prev = head;
 
         this.capacity = capacity;
-        currentSize = 0;
         cacheHash = new HashMap<>();
     }
 
