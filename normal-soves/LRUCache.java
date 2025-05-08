@@ -1,38 +1,43 @@
+import java.util.HashMap;
 
-// class ListNode {
-// int val;
-// ListNode next, prev;
+public class LRUCache {
 
-// ListNode() {
-// }
+    private class Node {
+        int key;
+        int val;
+        Node prev;
+        Node next;
 
-// ListNode(int val) {
-// this.val = val;
-// }
+        Node(int key, int val) {
+            this.key = key;
+            this.val = val;
+        }
+    }
 
-// ListNode(int val, ListNode next) {
-// this.val = val;
-// this.next = next;
-// }
+    private Node head;
+    private Node tail;
+    private int currentSize;
+    HashMap<Integer, Node> cacheHash;
 
-// ListNode(int val, ListNode next, ListNode prev) {
-// this.val = val;
-// this.next = next;
-// this.prev = prev;
-// }
-// }
+    public LRUCache(int capacity) {
 
-// public class LRUCache {
+        currentSize = 0;
+        cacheHash = new HashMap<>();
+    }
 
-// public LRUCache(int capacity) {
+    public int get(int key) {
+        if (cacheHash.containsKey(key)) {
+            return cacheHash.get(key).val;
+        } else {
+            return -1;
+        }
+    }
 
-// }
+    public void put(int key, int value) {
+        if (cacheHash.containsKey(key)) {
+            cacheHash.get(key).val = value;
+        } else {
 
-// public int get(int key) {
-
-// }
-
-// public void put(int key, int value) {
-
-// }
-// }
+        }
+    }
+}
