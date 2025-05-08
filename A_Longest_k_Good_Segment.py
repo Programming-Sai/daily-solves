@@ -6,7 +6,8 @@ def check(n, k, a):
     freq = defaultdict(int)
     window = deque()
     window_set = set()
-    l, r = 0
+    l = r = max_len = 0
+    
 
 
 n, k = list(map(int, input().slpit()))
