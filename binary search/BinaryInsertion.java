@@ -13,21 +13,18 @@ public class BinaryInsertion {
         target = 11;
         mid = l + (r - l) / 2;
         while (l <= r) {
-            // mid = l + (r - l) / 2;
             mid = l + (r - l) / 2;
             if (l == r && l == mid) {
                 System.out.println(arr[mid]);
                 break;
             } else if (arr[mid] < target) {
                 l = mid + (isGreaterThan ? 1 : 0);
-                // l = mid;
             } else if (arr[mid] > target) {
                 r = mid + (isGreaterThan ? 0 : -1);
-                // r = mid - 1;
-
             }
+            if (l >= arr.length || r < 0 || l > r)
+                break;
             System.out.println(arr[l] + ", " + arr[mid] + ", " + arr[r]);
-            // System.out.println(l + ", " + mid + ", " + r + ", " + arr[mid]);
         }
     }
 }
