@@ -1,5 +1,5 @@
 
-public class BinaryInsertion {
+public class BissectionLeftRight {
 
     // public static void main(String[] args) {
 
@@ -31,14 +31,14 @@ public class BinaryInsertion {
     // }
     // }
 
-    public static void main(String[] args) {
-        int l, r, mid, target;
-        boolean isGreaterThan = true; // toggle here
-        int[] arr = new int[] { 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 20 };
+    public static int bissection(int[] arr, int target, String type) {
+        int l, r, mid;
+        // boolean isGreaterThan = true; // True -> Bisset right
+        // boolean isGreaterThan = false; // False -> Bisset left
+        boolean isGreaterThan = type.equals("right");
 
         l = 0;
         r = arr.length - 1;
-        target = 10;
 
         int result = -1;
         while (l <= r) {
@@ -61,9 +61,20 @@ public class BinaryInsertion {
         }
 
         if (result != -1) {
-            System.out.println(arr[result]);
+            // System.out.println(arr[result]);
+            return arr[result];
         } else {
-            System.out.println("No valid value found.");
+            // System.out.println("No valid value found.");
+            return -1;
         }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[] { 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 20 };
+        int target = 11;
+
+        System.out.println(bissection(arr, target, "right"));
+        System.out.println(bissection(arr, target, "left"));
+
     }
 }
