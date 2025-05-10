@@ -1,6 +1,8 @@
 from fprintx import printx
 
 def check(n, t):
+    if n == 1:
+        return 1,0
     if n == 2:
         return 1,1
     l = ta = tb = a = b =  0
@@ -14,7 +16,7 @@ def check(n, t):
     r -= 1
     b += 1
 
-    while l <= r:
+    while l < r:
         if ta > tb:
             tb += t[r]
             b += 1
