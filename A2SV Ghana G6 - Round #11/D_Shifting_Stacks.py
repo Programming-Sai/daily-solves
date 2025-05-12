@@ -35,14 +35,14 @@ def check(n, h):
 
 
 
-# def check(n, h):
-#     running_val_sum = running_idx_sum = 0
-#     for i in range(n):
-#         running_idx_sum += i
-#         running_val_sum += h[i]
-#         if running_val_sum < running_idx_sum:
-#             return 'NO'
-#     return 'YES'
+def check(n, h):
+    running_val_sum = running_idx_sum = 0
+    for i in range(n):
+        running_idx_sum += i
+        running_val_sum += h[i]
+        if running_val_sum < running_idx_sum:
+            return 'NO'
+    return 'YES'
             
 
 
