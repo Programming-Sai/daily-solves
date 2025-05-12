@@ -12,7 +12,7 @@ def check(n, a):
         
         has_zero = 0 in set(a)
 
-        if number_of_negatives % 2:
+        if number_of_negatives % 2:                                                                 
             if not has_zero:
                 number_of_negatives -= 1
         result = 0
