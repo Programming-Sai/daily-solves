@@ -41,16 +41,16 @@ public class ReverseNodesInKGroup {
         dummy.next = head;
         curr = dummy;
 
-        while (curr != null) {
-            if (numberOfSegments > 0) {
-                Segment seg = reverseList(curr.next, k);
-                curr.next = seg.newHead;
-                curr = seg.newTail;
-                numberOfSegments--;
-            }
-            // curr = curr.next;
-            System.out.println("l");
+        // while (curr != null) {
+        while (numberOfSegments > 0) {
+            Segment seg = reverseList(curr.next, k);
+            curr.next = seg.newHead;
+            curr = seg.newTail;
+            numberOfSegments--;
         }
+        // curr = curr.next;
+        // System.out.println("l");
+        // }
         return dummy.next;
     }
 
@@ -100,6 +100,8 @@ public class ReverseNodesInKGroup {
         ListNode result1 = reverseKGroup(head1, k1);
         System.out.print("Reversed (k=" + k1 + "): ");
         printList(result1);
+
+        System.out.println();
 
         int[] vals2 = { 1, 2, 3, 4, 5, 6, 7 };
         int k2 = 3;
