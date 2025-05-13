@@ -17,23 +17,57 @@ class ListNode {
 }
 
 public class ReverseNodesInKGroup {
-    public static ListNode reverseKGroup(ListNode head, int k) {
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode curr = dummy;
+    static class Segment {
+        ListNode newHead;
+        ListNode newTail;
 
+        Segment(ListNode h, ListNode t) {
+            this.newHead = h;
+            this.newTail = t;
+        }
+    }
+
+    public static ListNode reverseKGroup(ListNode head, int k) {
+        ListNode curr = head;
+        int length = 0;
         while (curr != null) {
-            ListNode segTail = curr;
-            if (curr.next != null) {
-                segTail.next = reverseList(curr.next);
-            }
+            length++;
             curr = curr.next;
         }
 
+        int numberOfSegments = length / k;
+
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        curr = dummy;
+
+        while (curr != null) {
+            if (numberOfSegments > 0) {
+                Segment seg = reverseList(curr.next, k);
+                curr.next = seg.newHead;
+                curr = seg.newTail;
+                numberOfSegments--;
+            }
+            // curr = curr.next;
+            System.out.println("l");
+        }
+        return dummy.next;
     }
 
-    public static ListNode reverseList(ListNode head) {
+    public static Segment reverseList(ListNode head, int k) {
 
+        ListNode curr = head;
+        ListNode prev = null;
+        ListNode nextNode;
+        while (curr != null && k > 0) {
+            nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+            k--;
+        }
+        head.next = curr;
+        return new Segment(prev, head);
     }
 
     // Helper to build a list from array
