@@ -7,7 +7,6 @@ public class OneThreeTwoPattern {
 
         for (int i = nums.length - 1; i > -1; i--) {
             if (nums[i] < thirdTracker) {
-                // System.out.println(nums[i] + ", " + thirdTracker + ", " + stack.peek());
                 return true;
             }
 
