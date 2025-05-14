@@ -20,6 +20,7 @@ public class OnlineElection {
                     currentLeader = persons[i];
                     leaders[i] = currentLeader;
                 }
+                leaders[i] = currentLeader;
             }
             this.leaders = leaders;
             this.times = times;
@@ -49,15 +50,32 @@ public class OnlineElection {
     }
 
     public static void main(String[] args) {
-        TopVotedCandidate k = new TopVotedCandidate(new int[] { 0, 1, 1, 0, 0, 1, 0 },
-                new int[] { 0, 5, 10, 15, 20, 25, 30 });
+        // TopVotedCandidate k = new TopVotedCandidate(new int[] { 0, 1, 1, 0, 0, 1, 0
+        // },
+        // new int[] { 0, 5, 10, 15, 20, 25, 30 });
+        // System.out.print(
+        // "[ " +
+        // k.q(3) + ", " +
+        // k.q(12) + ", " +
+        // k.q(25) + ", " +
+        // k.q(15) + ", " +
+        // k.q(24) + ", " +
+        // k.q(8) + " ]");
+        // }
+
+        TopVotedCandidate k = new TopVotedCandidate(new int[] { 0, 0, 1, 1, 2 },
+                new int[] { 0, 67, 69, 74, 87 });
         System.out.print(
                 "[ " +
-                        k.q(3) + ", " +
-                        k.q(12) + ", " +
-                        k.q(25) + ", " +
-                        k.q(15) + ", " +
-                        k.q(24) + ", " +
-                        k.q(8) + " ]");
+                        k.q(4) + ", " +
+                        k.q(62) + ", " +
+                        k.q(100) + ", " +
+                        k.q(88) + ", " +
+                        k.q(70) + ", " +
+                        k.q(73) + ", " +
+                        k.q(22) + ", " +
+                        k.q(75) + ", " +
+                        k.q(29) + ", " +
+                        k.q(10) + " ]");
     }
 }
