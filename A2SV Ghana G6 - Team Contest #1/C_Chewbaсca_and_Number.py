@@ -8,7 +8,7 @@ def check(x):
     v = set(x)
     if len(v) == 1 and '9' in v:
         return x    
-    return int("".join([str(9 - int(i)) if 9 - int(i) < int(i) else str(int(i)) for i in x]))
+    return int("".join([str(9 - int(i)) if 9 - int(i) < int(i) else str(int(i)) for i in x if int(i) != 0 and int(i) != 9]))
 
 
 print(check((input())))

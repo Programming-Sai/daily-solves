@@ -7,16 +7,14 @@ public class HIndexII {
         ans = 0;
         while (l <= r) {
             mid = l + (r - l) / 2;
-            if (citations[mid] > mid + 1) {
-                ans = mid;
+            if (citations[mid] >= (n - mid)) {
+                ans = n - mid;
                 r = mid - 1;
             } else {
                 l = mid + 1;
             }
         }
-        // if (ans != -1) {
-        return citations[ans < 0 ? 0 : ans];
-        // }
+        return ans;
     }
 
     public static void main(String[] args) {
