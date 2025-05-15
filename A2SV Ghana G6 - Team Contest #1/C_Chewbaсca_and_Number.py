@@ -5,10 +5,7 @@ from fprintx import printx
 
 
 def check(x):
-    v = set(x)
-    if len(v) == 1 and '9' in v:
-        return x    
-    return int("".join([str(9 - int(i)) if 9 - int(i) < int(i) else str(int(i)) for i in x if int(i) != 0 and int(i) != 9]))
+    return int("".join([str(int(x[i]))   if (i == 0 and x[i] == '9') or int(x[i]) < 5  else str(9 - int(x[i])) for i in range(len(x))]))
 
 
 print(check((input())))
