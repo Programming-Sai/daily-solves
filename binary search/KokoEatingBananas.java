@@ -9,7 +9,6 @@ public class KokoEatingBananas {
                 r = x;
             }
         }
-        // System.out.println(r);
         while (l < r) {
             mid = l + (r - l) / 2;
             time = 0;
@@ -17,9 +16,9 @@ public class KokoEatingBananas {
                 time += (pile + mid - 1) / mid;
             }
             if (time <= h) {
-                r = mid; // Why r = mid and nor mid - 1
+                r = mid;
             } else {
-                l = mid + 1; // Why l = mid +1 and not just mid.
+                l = mid + 1;
             }
         }
 
