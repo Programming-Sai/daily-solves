@@ -12,6 +12,9 @@ def pattern(num):
         while stack and num[i] > stack[-1]:
             right[i] = stack.pop()
         stack.append(num[i])
+        if left[i] and right[i]:
+            return True
+    return False
 
     for i in range(n):
         if left[i] and right[i]:
