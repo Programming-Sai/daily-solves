@@ -16,10 +16,6 @@ def pattern(num):
             return True
     return False
 
-    for i in range(n):
-        if left[i] and right[i]:
-            return True
-    return False
 
 print(pattern([-2, 1, -2]))
 print(pattern([1, 2, 3, 4]))
