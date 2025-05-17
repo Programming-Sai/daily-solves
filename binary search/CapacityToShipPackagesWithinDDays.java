@@ -1,6 +1,6 @@
 public class CapacityToShipPackagesWithinDDays {
     public static int shipWithinDays(int[] weights, int days) {
-        int l, r, mid, max = Integer.MIN_VALUE, sum = 0, n = weights.length, ans = -1;
+        int l, r, mid, max = Integer.MIN_VALUE, sum = 0, ans = -1;
 
         for (int weight : weights) {
             if (max < weight) {
