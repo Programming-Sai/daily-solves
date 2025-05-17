@@ -2,20 +2,19 @@ from fprintx import printx
 
 
 def check(n, k, stack):
-    stack.sort()
-    cat = result = 0
-
-    while stack[-1] > cat:
-        if stack:
-            print(stack, cat)
-            if stack[-1] >= n:
-                stack.pop()
-                result+=1
-        if stack:
-            stack[-1]+=1
-            cat+=1
-        if not stack:break
-    return result
+    unique_positions = sorted(set(stack), reverse=True)
+    
+    saved = 0
+    total_distance = 0
+    
+    for pos in unique_positions:
+        dist = n - pos
+        if total_distance + dist < n:
+            saved += 1
+            total_distance += dist
+        else:
+            break
+    return saved
 
 
 
