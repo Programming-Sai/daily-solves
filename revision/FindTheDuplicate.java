@@ -6,20 +6,20 @@ public class FindTheDuplicate {
     public static int findDuplicate(int[] nums) {
         HashMap<Integer, Integer> frequencies = new HashMap<>();
         int target = -1, l, r, mid, n = nums.length;
-        for (int i : nums) {
-            frequencies.put(nums[i], frequencies.getOrDefault(nums[i], 0) + 1);
+        for (int num : nums) {
+            frequencies.put(num, frequencies.getOrDefault(num, 0) + 1);
         }
-        System.out.println(Arrays.toString(nums));
-        for (int i : nums) {
-            System.out.println(nums[i] + ", " + frequencies.get(nums[i]));
-            if (frequencies.get(nums[i]) > 1) {
-                target = nums[i];
+        for (int num : nums) {
+            // System.out.println(num + ", " + frequencies.get(num));
+            if (frequencies.get(num) > 1) {
+                target = num;
             }
         }
+        // System.out.println(Arrays.toString(nums));
 
         l = 1;
         r = n - 1;
-        System.out.println(l + ", " + r + ", " + target);
+        // System.out.println(l + ", " + r + ", " + target);
         while (l < r) {
             mid = l + (r - l) / 2;
             if (mid == target) {
@@ -36,8 +36,8 @@ public class FindTheDuplicate {
 
     public static void main(String[] args) {
         System.out.println(findDuplicate(new int[] { 1, 3, 4, 2, 2 }));
-        // System.out.println(findDuplicate(new int[] { 3, 1, 3, 4, 2 }));
-        // System.out.println(findDuplicate(new int[] { 3, 3, 3, 3, 3 }));
+        System.out.println(findDuplicate(new int[] { 3, 1, 3, 4, 2 }));
+        System.out.println(findDuplicate(new int[] { 3, 3, 3, 3, 3 }));
     }
 
 }
