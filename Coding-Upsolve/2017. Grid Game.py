@@ -22,3 +22,5 @@ def gridGame(grid):
 print(gridGame( grid = [[2,5,4],[1,5,1]]))
 print(gridGame( grid = [[3,3,1],[8,5,2]]))
 print(gridGame( grid = [[1,3,1,15],[1,3,3,1]]))
+print(gridGame( grid = [[1,3,1,15],[1,3,3,1]]))
+print(gridGame( grid = [[1,3,1,15],[1,3,3,1]]))
