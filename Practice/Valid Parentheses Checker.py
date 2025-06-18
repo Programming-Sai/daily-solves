@@ -13,15 +13,24 @@ def check(s: str) -> bool:
     stack = []
 
     for b in s:
-        if stack and stack[-1] not in closers:
-            if b == brackets[stack[-1]]:
-                stack.pop()
-        stack.append(b)
+        if b in set(brackets.keys()):
+            stack.append(b)
+        else:
+            if not stack or brackets[stack.pop()] != b:
+                return False
 
-    return not (len(stack) == len(s)), s, stack
+    return len(stack) == 0, s, stack
 
 
 
+print(check("(((()))("))
+# Expected: False
+
+print(check("[(])"))
+# Expected: False
+
+print(check("]"))
+# Expected: False
 
 print(check("()"))  
 # Expected: True
