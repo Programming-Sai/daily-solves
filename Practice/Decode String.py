@@ -1,4 +1,4 @@
-
+from fprintx import printx
 
 def check(s: str) -> str:
     """
@@ -9,24 +9,23 @@ def check(s: str) -> str:
 
     Assume input is always valid.
     """
-    num_stack, str_stack = [], []
+    dig_stk, str_stk = [], []
     curr, num = "", 0
-    for ch in s:
-        if ch.isdigit():
-            num = num * 10 + int(ch)
-        elif ch == "[":
-            str_stack.append(curr)
-            num_stack.append(num)
-            curr = ""
-            num = 0
-        elif ch == "]":
-            repeat = num_stack.pop()
-            prev = str_stack.pop()
-            curr = prev + curr * repeat
+    for st in s:
+        # printx(curr, type(curr), num, st, str_stk, dig_stk)
+        if st.isdigit():
+            num = num * 10 + int(st)
+        elif st == "[":
+            str_stk.append(curr)
+            dig_stk.append(int(num))
+            curr, num = "", 0
+        elif st == ']':
+            repeater = dig_stk.pop()
+            prev_str = str_stk.pop()
+            curr = prev_str + curr * repeater
         else:
-            curr += ch
-
-
+            curr += st
+    return curr
 
 
 
