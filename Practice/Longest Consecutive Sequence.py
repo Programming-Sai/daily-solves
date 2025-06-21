@@ -14,6 +14,9 @@ def check(nums: List[int]) -> int:
     nums_set = set(nums)
     res = 0
     for num in nums_set:
+        if num - 1 not in nums_set:
+            res = 1
+            continue
         if (num + 1 in nums_set or num - 1 in nums_set):
             res += 1
     return res or 1
