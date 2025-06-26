@@ -1,25 +1,24 @@
+
 from fprintx import printx
 
 
-def check(n, k, stack):
-    unique_positions = sorted(set(stack), reverse=True)
-    
-    saved = 0
-    total_distance = 0
-    
-    for pos in unique_positions:
-        dist = n - pos
-        if total_distance + dist < n:
-            saved += 1
-            total_distance += dist
-        else:
+def check(n, k, x):
+    x.sort()
+    cat = save = 0
+    for i in range(len(x)-1, -1, -1):
+        if x[i] < cat:
             break
-    return saved
+        save += 1
+        cat += n - x[i]
+    return save
 
 
+n, k, x = 10, 6, list(set([8, 7, 5, 4, 9, 4]))
+# n, k, x = 2, 8,list(set( [1]*8))
+# print(check(n, k, x))
 
-t = int(input())
-for _ in range(t):
+
+for _ in range(int(input())):
     n, k = map(int, input().split())
-    stack = list(map(int, input().split()))
-    print(check(n, k, stack))
+    x = list(set(map(int, input().split())))
+    print(check(n, k, x))
