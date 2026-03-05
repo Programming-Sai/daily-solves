@@ -1,0 +1,14 @@
+def sortColors(nums):
+    """
+    Do not return anything, modify nums in-place instead.
+    """
+    freq = [0, 0, 0]
+    res = []
+    for num in nums:
+        freq[num] += 1
+    for i, fre in enumerate(freq):
+        res.extend([i] * fre)
+    for i in range(len(nums)):
+        nums[i] = res[i]
+
+    
