@@ -1,0 +1,10 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        nums_set = sorted(set(nums))
+        k = len(nums_set)
+        for i in range(len(nums)):
+            if i < k:
+                nums[i] = nums_set[i]
+            else:
+                nums[i] = None
+        return k
