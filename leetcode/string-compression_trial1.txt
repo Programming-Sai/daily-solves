@@ -1,0 +1,16 @@
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        w, s, n, l = 0, 0, len(chars), 0
+        for r in range(n):
+            if r == n-1 or chars[r] != chars[r+1]:
+                length = str(r - s + 1)
+                # l += (len(length) + 1 if (r - s + 1) > 1 else 1)
+                chars[w] = chars[s]
+                w += 1
+                if int(length) > 1:
+                    for m in length:
+                        chars[w] = m
+                        w += 1
+                s = r + 1
+        return w
+        
