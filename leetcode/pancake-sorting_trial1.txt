@@ -1,0 +1,19 @@
+class Solution:
+    def pancakeSort(self, arr: List[int]) -> List[int]:
+        flip_size, res = len(arr), []
+        while flip_size > 1:
+            max_item = flip_size
+            print(flip_size)
+            if arr[flip_size-1] != flip_size:
+                index_to_flip = -1
+                for i in range(flip_size):
+                    if arr[i] == max_item:
+                        index_to_flip = i
+                        arr[:index_to_flip + 1] = arr[:index_to_flip + 1][::-1]
+                        res.append(index_to_flip + 1)
+                        break
+                arr[:flip_size] = arr[:flip_size][::-1]
+                res.append(flip_size)
+            flip_size -= 1
+        return res
+            

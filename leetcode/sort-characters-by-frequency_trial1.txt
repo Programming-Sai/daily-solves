@@ -1,0 +1,8 @@
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        freq = Counter(s)
+        res = ''
+        sorted_s = (sorted(freq.items(), key=lambda x:-x[1]))
+        for s, f in sorted_s:
+            res += (s * f)
+        return res
