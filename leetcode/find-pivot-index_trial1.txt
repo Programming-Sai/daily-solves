@@ -1,0 +1,10 @@
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        prefix_sums = [0] + list(accumulate(nums))
+        n = len(prefix_sums)
+        # print(prefix_sums)
+        for i in range(1, n):
+            # print(prefix_sums[i-1], i, (prefix_sums[-1] - prefix_sums[i]))
+            if prefix_sums[i-1] == (prefix_sums[-1] - prefix_sums[i]):
+                return i-1
+        return -1
