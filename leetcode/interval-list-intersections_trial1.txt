@@ -1,0 +1,13 @@
+class Solution:
+    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+        i, j, nf, ns, res = 0, 0, len(firstList), len(secondList), []
+        while i < nf and j < ns:
+            s, e = firstList[i], secondList[j]
+            x, y = max(s[0], e[0]), min(s[1], e[1])
+            if x <= y:
+                res.append([x, y])
+            if s[1] < e[1]:
+                i += 1
+            else:
+                j += 1
+        return res
