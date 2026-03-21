@@ -1,21 +1,22 @@
 n, m = map(int, input().split())
-a = sorted(map(int, input().split()))
-b = sorted(map(int, input().split()))
-res = []
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+shortest_length = min(n, m)
+shortest = []
 if len(a) < len(b):
-    start_arr = a
-    other_arr = b
-else: 
-    start_arr = b
-    other_arr = a
-
-for i in range(len(start_arr)):
-    if a[i] < b[i]:
+    shortest = a
+else:
+    shortest = b
+i, j = 0, 0
+res = []
+while i < n and j < m:
+    if a[i] < b[j]:
         res.append(a[i])
-        res.append(b[i])
+        i += 1
     else:
-        res.append(b[i])
-        res.append(a[i])
+        res.append(b[j])
+        j += 1
 
-res.extend(other_arr[i+1:])
+res.extend(a[i:])
+res.extend(b[j:])
 print(*res)
