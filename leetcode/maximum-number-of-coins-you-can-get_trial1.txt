@@ -1,0 +1,10 @@
+class Solution:
+    def maxCoins(self, piles: List[int]) -> int:
+        piles = sorted(piles, reverse=True)
+        exclusions = (len(piles) // 3) 
+        max_sum = 0
+        for i in range(len(piles[:(len(piles) - exclusions)])):
+            if i % 2 == 0:
+                continue
+            max_sum += piles[i]
+        return max_sum
