@@ -1,0 +1,12 @@
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        count = {0: 1}
+        odd_count = 0
+        res = 0
+        
+        for num in nums:
+            odd_count += num % 2
+            res += count.get(odd_count - k, 0)
+            count[odd_count] = count.get(odd_count, 0) + 1
+        
+        return res
