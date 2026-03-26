@@ -1,0 +1,12 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        target_counter, window_counter, n, window_size, l, res = Counter(p), Counter(s[:len(p)]), len(s), len(p), 0, []
+        r = window_size - 1
+        if window_counter == target_counter: res.append(l)
+        while r < n - 1:
+            r += 1
+            window_counter[s[r]] += 1
+            window_counter[s[l]] -= 1
+            l += 1
+            if window_counter == target_counter: res.append(l)
+        return res
