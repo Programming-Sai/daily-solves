@@ -1,0 +1,11 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        people.sort()
+        l, r, boats = 0, len(people) - 1, 0
+        while l <= r:
+            total_weight = people[l] + people[r]
+            if total_weight <= limit:
+                l += 1
+            r -= 1
+            boats += 1
+        return boats
