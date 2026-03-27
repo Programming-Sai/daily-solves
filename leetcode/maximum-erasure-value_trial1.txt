@@ -1,0 +1,15 @@
+class Solution:
+    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+        l, r, n, max_sum, window_freq, running_sum = 0, 0, len(nums), float("-inf"), defaultdict(int), 0
+        while r < n:
+            window_freq[nums[r]] += 1
+            running_sum += nums[r]
+            while l < n and window_freq[nums[r]] > 1:
+                window_freq[nums[l]] -= 1
+                running_sum -= nums[l]
+                if window_freq[nums[l]] == 0:
+                    del window_freq[nums[l]]
+                l += 1
+            max_sum = max(max_sum, running_sum)
+            r += 1
+        return max_sum
