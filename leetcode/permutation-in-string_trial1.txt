@@ -1,0 +1,15 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        if len(s1) > len(s2): return False
+        l, n, window_size, target_freq = 0, len(s2), len(s1), Counter(s1)
+        r = window_size - 1
+        window_freq = Counter(s2[:window_size])
+        if window_freq == target_freq: return True
+        while r < n-1:
+            r += 1
+            window_freq[s2[r]] += 1
+            window_freq[s2[l]] -= 1
+            if window_freq[s2[l]] == 0: del window_freq[s2[l]]
+            l += 1
+            if window_freq == target_freq: return True
+        return False        
