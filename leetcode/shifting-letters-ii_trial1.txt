@@ -1,0 +1,13 @@
+class Solution:
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        n = len(s)
+        diff_arr = [0] * (n+1)
+        res = []
+        for shift in shifts:
+            diff_arr[shift[0]] += shift[2] if shift[2] == 1 else -1
+            diff_arr[shift[1] + 1] += -(shift[2] if shift[2] == 1 else -1)
+        curr_sum = 0
+        for i in range(n):
+            curr_sum += diff_arr[i]
+            res.append(    chr((((curr_sum + ord(s[i])) - ord('a')) % 26  + ord('a')) )    )
+        return "".join(res)
