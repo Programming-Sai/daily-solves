@@ -1,0 +1,17 @@
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        return self.check(s)
+
+    def check(self, s, seen=False):
+        l, r = 0, len(s)-1
+        if l >= r:return True
+        while l < r:
+            if s[l] != s[r]:
+                if not seen:
+                    return self.check(s[l:r], seen=True) or self.check(s[l+1:r+1], seen=True)
+                else:
+                    return False
+            else:
+                l+=1
+                r-=1
+        return True
