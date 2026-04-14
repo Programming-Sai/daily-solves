@@ -1,0 +1,25 @@
+class Solution:
+    def add(self, a, b):
+        return a+b
+    def sub(self, a, b):
+        return int(a)-int(b)
+    def multipy(self, a, b):
+        return a*b
+    def div(self, a, b):
+        return int(a / b) if a * b > 0 else -(abs(a) // abs(b))
+
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        ops = { 
+            '+': self.add,
+            '-': self.sub,
+            '*': self.multipy,
+            '/': self.div
+        }
+        for token in tokens:
+            if token not in ops:
+                stack.append(int(token))
+            else:
+                if len(stack) > 1:
+                    stack.append((lambda b=stack.pop(), a=stack.pop(): ops[token](a, b))())
+        return stack[0]
