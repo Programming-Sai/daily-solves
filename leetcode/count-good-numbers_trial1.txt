@@ -1,0 +1,11 @@
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        def pow_f(base, exponent):
+            if exponent == 0:
+                return 1
+            x = pow_f(base, exponent//2)
+            res = (x**2) % ((10**9) + 7)
+            if exponent % 2 == 1:
+                res = (res * base) % ((10**9) + 7)
+            return res
+        return (pow_f(5,((n+1)//2)) * pow_f(4, (n//2))) % ((10**9) + 7)
