@@ -1,0 +1,14 @@
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        def summer(d):
+            return sum(((num + d - 1) // d) for num in nums)
+        l, r, ans = 1, max(nums), -1
+        while l <= r:
+            mid = l + (r-l)//2
+            sum_ = summer(mid)
+            if sum_ <= threshold:
+                ans = mid
+                r = mid - 1
+            else:
+                l = mid + 1
+        return ans
